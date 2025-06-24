@@ -1,0 +1,108 @@
+<section class="custom-category-section">
+    <div class="category-header">
+        <button class="category-tab active" data-target="headphones">Headphones</button>
+        <button class="category-tab" data-target="earphones">Earphones</button>
+    </div>
+
+    <div class="category-content headphones-content">
+        {% for block in section.blocks %} {% if block.type == 'headphones' %}
+        <a href="{{ block.settings.link }}" class="category-item">
+            <img src="{{ block.settings.image | image_url: width: 100 }}" alt="{{ block.settings.title }}">
+            <p>{{ block.settings.title }}</p>
+        </a>
+        {% endif %} {% endfor %}
+    </div>
+
+    <div class="category-content earphones-content hidden">
+        {% for block in section.blocks %} {% if block.type == 'earphones' %}
+        <a href="{{ block.settings.link }}" class="category-item">
+            <img src="{{ block.settings.image | image_url: width: 100 }}" alt="{{ block.settings.title }}">
+            <p>{{ block.settings.title }}</p>
+        </a>
+        {% endif %} {% endfor %}
+    </div>
+</section>
+
+<style>
+    .custom-category-section {
+        text-align: center;
+        padding: 40px 20px;
+    }
+    
+    .category-header {
+        margin-bottom: 20px;
+    }
+    
+    .category-tab {
+        padding: 10px 20px;
+        background: none;
+        border: 2px solid #ff6600;
+        border-radius: 20px;
+        margin: 0 5px;
+        cursor: pointer;
+    }
+    
+    .category-tab.active {
+        background: #ff6600;
+        color: #fff;
+    }
+    
+    .category-content {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    .category-item {
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        color: #333;
+    }
+    
+    .category-item img {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .category-item p {
+        margin-top: 8px;
+        font-size: 14px;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const tabs = document.querySelectorAll('.category-tab');
+        const headphonesContent = document.querySelector('.headphones-content');
+        const earphonesContent = document.querySelector('.earphones-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                if (this.dataset.target === 'headphones') {
+                    headphonesContent.classList.remove('hidden');
+                    earphonesContent.classList.add('hidden');
+                } else {
+                    headphonesContent.classList.add('hidden');
+                    earphonesContent.classList.remove('hidden');
+                }
+            });
+        });
+    });
+</script>
+
+{% schema %} { "name": "Headphones Section", "settings": [], "blocks": [ { "type": "headphones", "name": "HeadphonesItem", "settings": [ { "type": "image_picker", "id": "image", "label": "Headphones Collection Image" }, { "type": "text", "id": "title",
+"label": "Headphones Collection Title" }, { "type": "url", "id": "link", "label": "Headphones Collection Link" } ] }, { "type": "earphones", "name": "Earphones Item", "settings": [ { "type": "image_picker", "id": "image", "label": "Earphones Collection
+Image" }, { "type": "text", "id": "title", "label": "Earphones Collection Title" }, { "type": "url", "id": "link", "label": "Earphones Collection Link" } ] } ], "presets": [ { "name": "Headphones Section" } ] } {% endschema %}
