@@ -102,7 +102,58 @@
         });
     });
 </script>
-
-{% schema %} { "name": "Headphones Section", "settings": [], "blocks": [ { "type": "headphones", "name": "HeadphonesItem", "settings": [ { "type": "image_picker", "id": "image", "label": "Headphones Collection Image" }, { "type": "text", "id": "title",
-"label": "Headphones Collection Title" }, { "type": "url", "id": "link", "label": "Headphones Collection Link" } ] }, { "type": "earphones", "name": "Earphones Item", "settings": [ { "type": "image_picker", "id": "image", "label": "Earphones Collection
-Image" }, { "type": "text", "id": "title", "label": "Earphones Collection Title" }, { "type": "url", "id": "link", "label": "Earphones Collection Link" } ] } ], "presets": [ { "name": "Headphones Section" } ] } {% endschema %}
+{% schema %}
+{
+  "name": "Headphones Section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "headphones",
+      "name": "Headphones Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Headphones Collection Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Headphones Collection Title"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Headphones Collection Link"
+        }
+      ]
+    },
+    {
+      "type": "earphones",
+      "name": "Earphones Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Earphones Collection Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Earphones Collection Title"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Earphones Collection Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Headphones Section"
+    }
+  ]
+}
+{% endschema %}
